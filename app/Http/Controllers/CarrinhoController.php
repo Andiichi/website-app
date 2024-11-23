@@ -27,6 +27,7 @@ class CarrinhoController extends Controller
             'qty' => $request->qnt,
             'options' => [
                 'image' => $request->img,
+                'slug' => $request->slug,
             ],
         ]);
 
@@ -43,5 +44,29 @@ class CarrinhoController extends Controller
         ->with('message', "Algo deu errado! Por favor, tente novamente. Erro: <strong>". e($e->getMessage()) ."'</strong> ");
     }
 }
+
+public function removeCarrinho($id)
+{
+    try {
+        
+    // Lógica para remover o item do carrinho com o ID
+    \Cart::remove($id);
+
+
+        // Redireciona com a mensagem de sucesso
+        return redirect('carrinho')
+        ->with('type', 'success')
+        ->with('message', "Produto removido do carrinho com sucesso!");
+    } catch (\Exception $e) {
+
+        // Em caso de erro, redireciona com mensagem de erro
+        return redirect()
+        ->back()
+        ->with('type', 'danger')
+        ->with('message', "Algo deu errado! Por favor, tente novamente. Erro: <strong>". e($e->getMessage()) ."'</strong> ");
+    }
+    
+}
+
 
 }

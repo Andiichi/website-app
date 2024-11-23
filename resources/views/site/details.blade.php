@@ -64,7 +64,7 @@
                         R$ {{ number_format($produto->preco, 2, ',', '.') }}
                     </div>
 
-                    {{-- form das quantidades --}}
+                    {{-- form das quantidades
                     <form class="max-w-xs ">
                         <label for="counter-input" class="block mb-1 text-lg font-medium text-gray-900 dark:text-white ">Escolha a quantidade:</label>
                         <div class="relative flex items-center">
@@ -74,7 +74,7 @@
                                 </svg>
                             </button>
                     
-                            <input type="text" id="counter-input" data-input-counter class="flex-shrink-0 text-gray-900 dark:text-white border-0 bg-transparent text-sm font-normal focus:outline-none focus:ring-0 max-w-[2.5rem] text-center" placeholder="" value="1" required />
+                            <input type="text" id="inputqty" data-input-counter class="flex-shrink-0 text-gray-900 dark:text-white border-0 bg-transparent text-sm font-normal focus:outline-none focus:ring-0 max-w-[2.5rem] text-center" placeholder=""  value="1" required />
                     
                             <button type="button" id="increment-button" data-input-counter-increment="counter-input" class="flex-shrink-0 bg-gray-100 dark:bg-gray-700 dark:hover:bg-gray-600 dark:border-gray-600 hover:bg-gray-200 inline-flex items-center justify-center border border-gray-300 rounded-full h-6 w-6 focus:ring-gray-100 dark:focus:ring-gray-700 focus:ring-2 focus:outline-none">
                                 <svg class="w-2.5 h-2.5 text-gray-900 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 18">
@@ -82,30 +82,28 @@
                                 </svg>
                             </button>
                         </div>
-                    </form>
+                    </form> --}}
 
 
                 </div>
 
-                <div id="erro" class="d-flex  p-4 text-md text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400 -mt-20 -mb-14 hidden" role="alert">
-                    <span class="font-medium">Erro!</span> Quantidade invalida, verifique.
-                  </div>
 
                     {{-- formulario que levará as infos pelo carrinhocontroller --}}
-                <form id="add-to-cart-form" action="{{ route('site.addcarrinho') }}" method="post" enctype="multipart/form-data">
-                    @csrf
+                    <form action="{{ route('site.addcarrinho') }}" method="post" enctype="multipart/form-data">
+                        @csrf
 
-                    <input type="hidden" name="id" value="{{ $produto->id }}">
-                    <input type="hidden" name="name" value="{{ $produto->nome }}">
-                    <input type="hidden" name="price" value="{{ $produto->preco }}">
-                    <input type="hidden" name="qnt" id="qnt">
-                    <input type="hidden" name="img" value="{{ $produto->imagem }}">
+                        <input type="hidden" name="id" value="{{ $produto->id }}">
+                        <input type="hidden" name="name" value="{{ $produto->nome }}">
+                        <input type="hidden" name="price" value="{{ $produto->preco }}">
+                        
+                        <div class="relative flex items-center">
+                        <input type="number" name="qnt" value="1">
+                        </div>
+                        <input type="hidden" name="img" value="{{ $produto->imagem }}">
 
-                    <div id="erro" class="container flex-col  -mt-20 mx-auto p-4 mb-4 text-md text-red-800 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400 hidden" role="alert">
-                        <span class="font-medium">Erro</span> Não tem itens na categoria para serem exibidos.
-                      </div>
 
-                    <button type="button" id="buy-button"
+                 
+                    <button 
                         class="inline-flex items-center text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center  me-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
                         <span class="material-symbols-outlined me-1">
                             shopping_cart

@@ -3,7 +3,8 @@
         <img src="{{ $produto_imagem }}"  class="rounded-full w-32 md:w-32 " alt=" {{ $produto_nome }}">
     </td>
     <td class="px-6 py-4 font-semibold text-gray-900 dark:text-white truncate ">
-        {{ $produto_nome }}
+        <a class="hover:text-blue-700 hover:font-bold focus:ring-gray-100 focus:ring-2 focus:p-1"
+         href="{{ $produto_details}}">{{ $produto_nome }}</a>
     </td>
     <td class="px-6 py-4">
         <div class="flex items-center">
@@ -38,20 +39,17 @@
     <td class="px-6 py-4 font-semibold text-gray-900 dark:text-white">
         {{ $produto_preco }}
     </td>
-    <td class="px-6 py-4">
-        <a href="#" >
-            <button type="button" class="text-white bg-orange-400 hover:bg-orange-800 focus:ring-4 focus:outline-none focus:ring-orange-300 font-medium rounded-full text-sm p-2.5 text-center inline-flex items-center me-2 dark:bg-orange-600 dark:hover:bg-orange-400 dark:focus:ring-orange-800">
-                <span class="material-symbols-outlined">
-                    refresh
-                    </span>
-                </button>
-        </a>
-        <a href="#" >
-            <button type="button" class="text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-full text-sm p-2.5 text-center inline-flex items-center me-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800">
-                <span class="material-symbols-outlined">
-                    edit
-                    </span>
-                </button>
-        </a>
+    <td class="px-6 py-14 inline-flex">
+       <a href="#">
+        <button type="button" class="text-white bg-orange-600 hover:bg-orange-800 focus:ring-4 focus:outline-none focus:ring-orange-300 font-medium rounded-full text-sm p-2.5 text-center inline-flex items-center me-2 dark:bg-orange-600 dark:hover:bg-orange-400 dark:focus:ring-orange-800 ring-2  ring-orange-500/50">
+            <span class="material-symbols-outlined">
+                refresh
+                </span>
+            </button>
+    </a>
+        
+       {{ $produto_remove }}
+           
     </td>
 </tr>
+

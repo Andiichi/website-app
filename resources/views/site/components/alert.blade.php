@@ -2,8 +2,10 @@
     $tipo = Session::get('type'); // Define o valor padrão como 'info'
 @endphp
 
-<div id="toast-{{ $tipo }}" class="flex items-center w-full max-w-2xl p-4 mb-4 text-gray-500 bg-white rounded-lg shadow dark:text-gray-400 dark:bg-gray-800" role="alert">
-   
+@if(session()->has('message'))
+
+<div id="toast-{{ $tipo }}" class="cardAlert flex items-center  w-full max-w-4xl p-8 mb-4 text-gray-500 bg-white rounded-lg shadow-md dark:text-gray-400 dark:bg-gray-800" role="alert">
+
 {{--  alerta de sucesso --}}
 
 @if ($tipo == 'success')
@@ -72,3 +74,5 @@
 
  
 </div>
+
+@endif

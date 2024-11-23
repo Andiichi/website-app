@@ -53,6 +53,9 @@
                         @slot('produto_nome')
                             {{ $item->name }}
                         @endslot
+                        @slot('produto_details')
+                            {{ $item->options->slug }}
+                        @endslot
                         @slot('produto_preco')
                             {{-- formatação para transformar em R$ 99.06 por R$ 99,06 --}}
                             R$ {{ number_format($item->price, 2, ',', '.') }}
@@ -60,6 +63,23 @@
 
                         @slot('produto_quantidade')
                             {{ $item->qty }}
+                        @endslot
+
+                        @slot('produto_remove')
+
+                        <form action="{{ route('site.removecarrinho', $item->rowId) }}" method="POST" >
+                            @csrf
+                            @method('DELETE')
+
+                                <button type="hidden"
+                                    class=" text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-full text-sm p-2.5 text-center inline-flex items-center me-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800 ring-2  ring-red-500/50">
+                                    <span class="material-symbols-outlined">
+                                        delete
+                                    </span>
+                                </button>
+
+                            </form>
+
                         @endslot
                     @endcomponent
                 @endforeach
@@ -70,7 +90,7 @@
 
     <div class="flex gap-4  mt-4 mx-auto">
         <button type="button"
-            class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-full text-sm p-2 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+            class="text-white bg-blue-700 hover:bg-blue-600 focus:ring-4 focus:outline-none focus:ring-gray-800 font-medium rounded-full text-sm p-2 text-center inline-flex items-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 ring-4  ring-blue-500/50">
             <span class="material-symbols-outlined px-2">arrow_back</span>
             <span class="mr-4">Continuar comprando</span>
         </button>
@@ -78,20 +98,19 @@
         </button>
 
         <button type="button"
-            class="text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-full text-sm p-2 text-center inline-flex items-center  dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800">
+            class="text-white bg-red-700 hover:bg-red-600 focus:ring-4 focus:outline-none focus:ring-gray-800 font-medium rounded-full text-sm p-2 text-center inline-flex items-center  dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-800 ring-4  ring-red-500/50">
             <span class="material-symbols-outlined px-2">delete_forever</span>
             <span class="mr-4">Limpar carrinho</span>
         </button>
 
         <button type="button"
-            class="text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 font-medium rounded-full text-sm p-2 text-center inline-flex items-center  dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">
+            class="text-white bg-green-700 hover:bg-green-600  focus:ring-4 focus:outline-none focus:ring-gray-800  font-medium rounded-full text-sm p-2 text-center inline-flex items-center  dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800 ring-4  ring-green-500/50">
             <span class="material-symbols-outlined px-2">check</span>
             <span class="mr-4">Finalizar pedido</span>
         </button>
     </div>
 
     </div>
-
 
 
 @endsection

@@ -3,6 +3,6 @@
 @tailwind utilities;
 
 
-#table-carrinho-customers tr:nth-child(even){
+/* #table-carrinho-customers tr:nth-child(even){
     background-color: #f2f2f2;
-}
+} */

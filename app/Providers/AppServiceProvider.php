@@ -6,6 +6,7 @@ use Illuminate\Support\ServiceProvider;
 
 use App\Models\Categoria;
 
+
 class AppServiceProvider extends ServiceProvider
 {
     /**
@@ -24,5 +25,7 @@ class AppServiceProvider extends ServiceProvider
         //com esse codigo podemos está acessando todas as categorias em todas em nossas views
         $categoriasMenu = Categoria::all();
         view()->share('categoriasMenu', $categoriasMenu);
+
+
     }
 }

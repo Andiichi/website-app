@@ -6,32 +6,60 @@ Tem dois jeitos para adicionar uma @section:
 @section('title', 'Esse é o titulo da pagina')
 ou 
 @section('title') Essa é a pagina HOME @endsection
---}} 
+--}}
 
 @section('title', 'Home')
 @section('conteudo')
 
-<h1 class="text-2xl mb-5 font-semibold">Lista de Produtos:</h1>
+    <h1 class="text-2xl mb-5 font-semibold">Lista de Produtos:</h1>
 
-<div class="grid grid-cols-1 gap-6 md:grid-cols-4">
-    @foreach ($produtos as $produto)
-     @component('site/components/card-produto')
+    <div class="grid grid-cols-1 gap-6 md:grid-cols-4">
+        @foreach ($produtos as $produto)
+            @component('site/components/card-produto')
+                @slot('produto_nome')
+                    {{ $produto->nome }}
+                @endslot
+                @slot('produto_descricao')
+                    {{ Str::limit($produto->descricao, 20) }}
+                @endslot
+                @slot('produto_imagem')
+                    {{ $produto->imagem }}
+                @endslot
+                @slot('produto_slug')
+                    {{ $produto->slug }}
+                @endslot
+                @slot('produto_categoria')
+                    {{ $produto->categoria->nome }}
+                @endslot
 
-        @slot('produto_nome')  {{ $produto->nome }}  @endslot
-        @slot('produto_descricao')  {{ Str::limit($produto->descricao, 20, ) }}  @endslot
-        @slot('produto_imagem')  {{ $produto->imagem }}  @endslot
-        @slot('produto_slug')  {{ $produto->slug }}  @endslot
-        @slot('produto_categoria')  {{ $produto->categoria->nome }}  @endslot
+                @slot('form')
+                    <form action="{{ route('site.addcarrinho') }}" method="post" enctype="multipart/form-data">
+                        @csrf
 
-     @endcomponent
-    @endforeach
-  </div>
+                        <input type="hidden" name="id" value="{{ $produto->id }}">
+                        <input type="hidden" name="name" value="{{ $produto->nome }}">
+                        <input type="hidden" name="price" value="{{ $produto->preco }}">
+                        <input type="hidden" name="qnt" value="1">
+                        <input type="hidden" name="img" value="{{ $produto->imagem }}">
 
-  <div class="container flex flex-col  mx-auto p-4">
-    {{ $produtos->links() }}
-  </div>
-  
-  @endsection
+                        <!-- Botão "add" com animação de transformação -->
+
+                        <button class="absolute z-50 bottom-2 right-2 flex items-center justify-center p-3 rounded-full bg-blue-500 text-white transition-transform duration-500 ease-in-out hover:scale-110 hover:bg-indigo-500">
+                            <span class="material-symbols-outlined">
+                                add
+                            </span>
+                        </button>
+                    </form>
+                @endslot
+            @endcomponent
+        @endforeach
+    </div>
+
+    <div class="container flex flex-col  mx-auto p-4">
+        {{ $produtos->links() }}
+    </div>
+
+@endsection
 
 
 
@@ -132,7 +160,3 @@ e caso o array pode esta vazio, faça o seguinte
     @endslot
 @endcomponent 
 --}}
-
-
-
-

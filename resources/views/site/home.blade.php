@@ -11,16 +11,16 @@ ou
 @section('title', 'Home')
 @section('conteudo')
 
-    <h1 class="text-2xl mb-5 font-semibold">Lista de Produtos:</h1>
+    <h1 class="text-3xl my-8 pl-2 font-semibold">Lista de Produtos:</h1>
 
     <div class="grid grid-cols-1 gap-6 md:grid-cols-4">
         @foreach ($produtos as $produto)
             @component('site/components/card-produto')
                 @slot('produto_nome')
-                    {{ $produto->nome }}
+                {{ Str::limit($produto->nome, 20) }}
                 @endslot
                 @slot('produto_descricao')
-                    {{ Str::limit($produto->descricao, 20) }}
+                    {{ Str::limit($produto->descricao, 50) }}
                 @endslot
                 @slot('produto_imagem')
                     {{ $produto->imagem }}
@@ -32,30 +32,36 @@ ou
                     {{ $produto->categoria->nome }}
                 @endslot
 
-                @slot('form')
-                    <form action="{{ route('site.addcarrinho') }}" method="post" enctype="multipart/form-data">
-                        @csrf
+                @slot('form_adicionar')
 
+                     {{-- formulario que levará as infos pelo carrinhocontroller --}}
+                     <form action="{{ route('site.addcarrinho') }}" method="post" enctype="multipart/form-data">
+                        @csrf
+                        
                         <input type="hidden" name="id" value="{{ $produto->id }}">
                         <input type="hidden" name="name" value="{{ $produto->nome }}">
                         <input type="hidden" name="price" value="{{ $produto->preco }}">
-                        <input type="hidden" name="qnt" value="1">
                         <input type="hidden" name="img" value="{{ $produto->imagem }}">
+                        <input type="hidden" name="qnt" value="1">
 
                         <!-- Botão "add" com animação de transformação -->
-
-                        <button class="absolute z-50 bottom-2 right-2 flex items-center justify-center p-3 rounded-full bg-blue-500 text-white transition-transform duration-500 ease-in-out hover:scale-110 hover:bg-indigo-500">
-                            <span class="material-symbols-outlined">
-                                add
-                            </span>
-                        </button>
+                        <div class="flex mt-2">
+                            <button class="inline-flex items-center px-4 py-2.5 text-sm font-medium text-center rounded-lg  focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800  bg-blue-500 text-white transition-transform duration-500 ease-in-out hover:scale-110 hover:bg-indigo-500">
+                                Adicionar
+                                <span class="material-symbols-outlined ml-1">
+                                    shopping_cart
+                                </span>
+                            </button>
+                        </div>
                     </form>
+
                 @endslot
+
             @endcomponent
         @endforeach
     </div>
 
-    <div class="container flex flex-col  mx-auto p-4">
+    <div class="container flex flex-col  mx-auto py-8">
         {{ $produtos->links() }}
     </div>
 

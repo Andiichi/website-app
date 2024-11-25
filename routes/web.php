@@ -25,7 +25,7 @@ Route::prefix('carrinho')->group(function () {
     Route::get('/', [CarrinhoController::class, 'carrinhoLista'])->name('site.carrinho'); // Exibe o carrinho
     Route::post('/adicionar', [CarrinhoController::class, 'adicionarCarrinho'])->name('site.addcarrinho'); // Adiciona ao carrinho
     Route::post('/remover/{id}', [CarrinhoController::class, 'removerCarrinho'])->name('site.removercarrinho'); // Remove do carrinho
-    Route::post('/atualizar', [CarrinhoController::class, 'atualizarCarrinho'])->name('site.atualizarcarrinho'); // Remove do carrinho
+    Route::put('/atualizar', [CarrinhoController::class, 'atualizarCarrinho'])->name('site.atualizarcarrinho'); // Remove do carrinho
 });
 
 

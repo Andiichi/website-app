@@ -3,8 +3,8 @@
         <img src="{{ $produto_imagem }}" class="rounded-full w-32 md:w-32 " alt=" {{ $produto_nome }}">
     </td>
     <td class="px-6 py-4 font-semibold text-gray-900 dark:text-white truncate ">
-        <a class="hover:text-blue-700 hover:font-bold focus:ring-gray-100 focus:ring-2 focus:p-1"
-            href="{{ $produto_details }}">{{ $produto_nome }}</a>
+        <a class=" hover:underline hover:underline-offset-4 decoration-pink-500 focus:ring-gray-100 focus:ring-2 "
+            href="#">{{ $produto_nome }}</a>
     </td>
     <td class="px-6 py-4">
         {{ $produto_input_qty}}
@@ -15,8 +15,6 @@
     </td>
 
     <td class="px-6 py-14 inline-flex">
-
-        {{ $produto_atualiza }}
 
         {{ $produto_remove }}
 

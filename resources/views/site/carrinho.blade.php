@@ -53,9 +53,6 @@
                         @slot('produto_nome')
                             {{ $item->name }}
                         @endslot
-                        @slot('produto_details')
-                            {{ $item->options->slug }}
-                        @endslot
                         @slot('produto_preco')
                             {{-- formatação para transformar em R$ 99.06 por R$ 99,06 --}}
                             R$ {{ number_format($item->price, 2, ',', '.') }}
@@ -66,51 +63,22 @@
                         @endslot
 
                         @slot('produto_input_qty')
-                            <label for="counter-input" class="block mb-1 text-md font-medium text-gray-900 dark:text-white">
-                                Escolha a quantidade
-                            </label>
+                            <input type="number" name="qty" data-rowid='{{ $item->rowId }}' onchange="updateQuantity(this)"
+                                value="{{ $item->qty }}">
 
-                            <div class="relative flex items-center">
 
-                                <button type="button" id="decrement-button" data-input-counter-decrement="counter-input"
-                                    class="flex-shrink-0 bg-gray-100 dark:bg-gray-700 dark:hover:bg-gray-600 dark:border-gray-600 hover:bg-gray-200 inline-flex items-center justify-center border border-gray-300 rounded-full h-6 w-6 focus:ring-gray-100 dark:focus:ring-gray-700 focus:ring-2 focus:outline-none">
-                                    <svg class="w-2.5 h-2.5 text-gray-900 dark:text-white" aria-hidden="true"
-                                        xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 2">
-                                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                            d="M1 1h16" />
-                                    </svg>
-                                </button>
-
-                                <input type="text" id="counter-input" data-input-counter
-                                    class="flex-shrink-0 text-gray-900 dark:text-white border-0 bg-transparent text-md font-bold focus:outline-none focus:ring-0 max-w-[2.8rem] text-center"
-                                    placeholder="" name="id" value="{{ $item->qty }}" required min="1" />
-
-                                <button type="button" id="increment-button" data-input-counter-increment="counter-input"
-                                    class="flex-shrink-0 bg-gray-100 dark:bg-gray-700 dark:hover:bg-gray-600 dark:border-gray-600 hover:bg-gray-200 inline-flex items-center justify-center border border-gray-300 rounded-full h-6 w-6 focus:ring-gray-100 dark:focus:ring-gray-700 focus:ring-2 focus:outline-none">
-                                    <svg class="w-2.5 h-2.5 text-gray-900 dark:text-white" aria-hidden="true"
-                                        xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 18">
-                                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                            d="M9 1v16M1 9h16" />
-                                    </svg>
-                                </button>
-
-                            </div>
-                        @endslot
-
-                        @slot('produto_atualiza')
-                            <form action="{{ route('site.atualizarcarrinho') }}" method="POST">
+                            <form id='updateCartQty' action="{{ route('site.atualizarcarrinho') }}" method="post">
                                 @csrf
+                                @method('PUT')
 
-                                <input type="hidden" name="rowId" value="{{ $item->rowId }}">
+                                <input type="hidden" id='rowId' name='rowId' />
+                                <input type="hidden" id='qty' name='qty' />
 
-                                <button type="submit"
-                                    class="text-white bg-orange-600 hover:bg-orange-800 focus:ring-4 focus:outline-none focus:ring-orange-300 font-medium rounded-full text-sm p-2.5 text-center inline-flex items-center me-2 dark:bg-orange-600 dark:hover:bg-orange-400 dark:focus:ring-orange-800 ring-2  ring-orange-500/50">
-                                    <span class="material-symbols-outlined">
-                                        refresh
-                                    </span>
-                                </button>
+
                             </form>
                         @endslot
+
+
 
                         @slot('produto_remove')
                             <form action="{{ route('site.removercarrinho', $item->rowId) }}" method="POST">
@@ -158,3 +126,14 @@
 
 
 @endsection
+
+@push('script')
+    <script>
+        function updateQuantity(qty) {
+
+            $('#rowId').val($(qty).data('rowid'));
+            $('#qty').val($(qty).val());
+            $('updateCartQty').submit();
+        }
+    </script>
+@endpush

@@ -12,4 +12,3 @@ document.addEventListener('DOMContentLoaded', function () {
         }, 5000); // Tempo em milissegundos (5000 = 5 segundos)
     });
 });
-

@@ -48,8 +48,6 @@ class CarrinhoController extends Controller
 
 public function removerCarrinho($id)
 {
-    try {
-        
     // Lógica para remover o item do carrinho com o ID
     \Cart::remove($id);
 
@@ -58,36 +56,19 @@ public function removerCarrinho($id)
         return redirect('carrinho')
         ->with('type', 'success')
         ->with('message', "Produto removido do carrinho com sucesso!");
-    } catch (\Exception $e) {
-
-        // Em caso de erro, redireciona com mensagem de erro
-        return redirect()
-        ->back()
-        ->with('type', 'danger')
-        ->with('message', "Algo deu errado! Por favor, tente novamente. Erro: <strong>". e($e->getMessage()) ."'</strong> ");
-    }
-    
+   
 }
 
 public function atualizarCarrinho (Request $request)
 {
-    try {
         // Adiciona o produto ao carrinho
-        \Cart::update($rowId, $request->qty);
+        \Cart::update($request->$rowId, $request->qty);
 
 
         // Redireciona com a mensagem de sucesso
         return redirect('carrinho')
         ->with('type', 'success')
         ->with('message', "Produto atualizado do carrinho com sucesso!");
-    } catch (\Exception $e) {
-
-        // Em caso de erro, redireciona com mensagem de erro
-        return redirect()
-        ->back()
-        ->with('type', 'danger')
-        ->with('message', "Algo deu errado! Por favor, tente novamente. Erro: <strong>". e($e->getMessage()) ."'</strong> ");
-    }
     
 }
 

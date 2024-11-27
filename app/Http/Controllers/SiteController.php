@@ -10,12 +10,12 @@ use App\Models\Categoria;
 class SiteController extends Controller
 {
     // pagina inicial do nosso site
-    public function index()
+    public function products()
     {
         
         $produtos = Produto::paginate(4);
 
-        return view('site/home', compact('produtos'));
+        return view('site/list-products', compact('produtos'));
     }
 
 

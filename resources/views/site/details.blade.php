@@ -79,7 +79,7 @@
                             Escolha a quantidade
                         </label>
 
-                        <div class="relative flex items-center">
+                        <div class="relative flex justify-center items-center">
 
                             <button type="button" id="decrement-button" data-input-counter-decrement="counter-input"
                                 class="flex-shrink-0 bg-gray-100 dark:bg-gray-700 dark:hover:bg-gray-600 dark:border-gray-600 hover:bg-gray-200 inline-flex items-center justify-center border border-gray-300 rounded-full h-6 w-6 focus:ring-gray-100 dark:focus:ring-gray-700 focus:ring-2 focus:outline-none">

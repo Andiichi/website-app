@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+
 // use Cart; //usando o package 'hardevine/shoppingcart'
 
 class CarrinhoController extends Controller
@@ -55,21 +56,20 @@ public function removerCarrinho($id)
         // Redireciona com a mensagem de sucesso
         return redirect('carrinho')
         ->with('type', 'success')
-        ->with('message', "Produto removido do carrinho com sucesso!");
+        ->with('message', "Produto  removido do carrinho com sucesso!");
    
 }
 
-public function atualizarCarrinho (Request $request)
+public function atualizarCarrinho (Request $request, $rowId)
 {
         // Adiciona o produto ao carrinho
-        \Cart::update($request->$rowId, $request->qty);
+    \Cart::update($rowId, $request->qty);
 
+       // Redireciona com a mensagem de sucesso
+       return redirect('carrinho')
+       ->with('type', 'success')
+       ->with('message', "Produto atualizado com sucesso!");
 
-        // Redireciona com a mensagem de sucesso
-        return redirect('carrinho')
-        ->with('type', 'success')
-        ->with('message', "Produto atualizado do carrinho com sucesso!");
-    
 }
 
 }

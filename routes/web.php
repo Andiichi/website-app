@@ -11,7 +11,7 @@ use App\Http\Controllers\CarrinhoController;
 Route::resource('produtos', ProdutoController::class);
 
 // listando os produtos na tela inicial do site pelo site controller
-Route::get('/', [SiteController::class, 'index'])->name('site.index');
+Route::get('/', [SiteController::class, 'products'])->name('site.list-products');
 
 //exibindo o detalhes do produto pelo slug dele, vai aparecer na url
 Route::get('/produto/{slug}', [SiteController::class, 'details'])->name('site.details');
@@ -25,7 +25,7 @@ Route::prefix('carrinho')->group(function () {
     Route::get('/', [CarrinhoController::class, 'carrinhoLista'])->name('site.carrinho'); // Exibe o carrinho
     Route::post('/adicionar', [CarrinhoController::class, 'adicionarCarrinho'])->name('site.addcarrinho'); // Adiciona ao carrinho
     Route::post('/remover/{id}', [CarrinhoController::class, 'removerCarrinho'])->name('site.removercarrinho'); // Remove do carrinho
-    Route::put('/atualizar', [CarrinhoController::class, 'atualizarCarrinho'])->name('site.atualizarcarrinho'); // Remove do carrinho
+    Route::post('/atualizar/{id}', [CarrinhoController::class, 'atualizarCarrinho'])->name('site.atualizarcarrinho');// atualiza a qnt do carrinho
 });
 
 

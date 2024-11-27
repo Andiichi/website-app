@@ -29,7 +29,7 @@ class CarrinhoController extends Controller
             'qty' => $request->qnt,
             'options' => [
                 'image' => $request->img,
-                'slug' => $request->slug,
+                'categoria' => $request->categoria
             ],
         ]);
 

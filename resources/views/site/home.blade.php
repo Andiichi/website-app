@@ -15,7 +15,7 @@
         <button type="button" class="px-5 py-2.5 mt-8 rounded text-sm outline-none tracking-wide bg-gray-600 text-white hover:bg-gray-700">Criar uma conta</button>
     </div>
     <div class="md:h-[470px]">
-        <img src="https://readymadeui.com/photo.webp" class="w-full h-full md:object-contain" />
+        <img src="img/photo.jpg" class="w-full h-full md:object-contain" />
     </div>
 </div>
 

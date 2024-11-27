@@ -73,7 +73,8 @@
                         <input type="hidden" name="name" value="{{ $produto->nome }}">
                         <input type="hidden" name="price" value="{{ $produto->preco }}">
                         <input type="hidden" name="img" value="{{ $produto->imagem }}">
-
+                        <input type="hidden" name="categoria" value="{{ $produto->categoria->nome }}">
+                 
                         <label for="counter-input"
                             class="block mb-1 text-md font-medium text-gray-900 dark:text-white">
                             Escolha a quantidade
@@ -89,9 +90,11 @@
                                         stroke-width="2" d="M1 1h16" />
                                 </svg>
                             </button>
+
                             <input type="text" id="counter-input" data-input-counter
                                 class="flex-shrink-0 text-gray-900 dark:text-white border-0 bg-transparent text-md font-bold focus:outline-none focus:ring-0 max-w-[2.8rem] text-center"
                                 placeholder="" name="qnt" value="1" required min="1"/>
+
                             <button type="button" id="increment-button" data-input-counter-increment="counter-input"
                                 class="flex-shrink-0 bg-gray-100 dark:bg-gray-700 dark:hover:bg-gray-600 dark:border-gray-600 hover:bg-gray-200 inline-flex items-center justify-center border border-gray-300 rounded-full h-6 w-6 focus:ring-gray-100 dark:focus:ring-gray-700 focus:ring-2 focus:outline-none">
                                 <svg class="w-2.5 h-2.5 text-gray-900 dark:text-white" aria-hidden="true"

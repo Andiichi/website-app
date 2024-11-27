@@ -60,7 +60,7 @@ public function removerCarrinho($id)
    
 }
 
-public function atualizarCarrinho (Request $request, $rowId)
+public function atualizarCarrinho(Request $request, $rowId)
 {
         // Adiciona o produto ao carrinho
     \Cart::update($rowId, $request->qty);
@@ -71,5 +71,19 @@ public function atualizarCarrinho (Request $request, $rowId)
        ->with('message', "Produto atualizado com sucesso!");
 
 }
+
+public function limparCarrinho()
+{
+        // limpar carrinho
+        \Cart::destroy();
+
+       // Redireciona com a mensagem de sucesso
+       return redirect('carrinho')
+       ->with('type', 'warning')
+       ->with('message', "Seu carrinho está vazio!");
+
+}
+
+
 
 }

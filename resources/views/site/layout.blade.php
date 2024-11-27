@@ -23,7 +23,7 @@
     <div class="min-h-full">
         <nav class="bg-gray-800">
             <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-                <div class="flex h-16 items-center justify-between">
+                <div class="flex py-11 h-16 items-center justify-between">
                     <div class="flex items-center">
                         <a href="/" class="flex items-center space-x-4 rtl:space-x-reverse {">
                             <svg class="h-8" viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg"
@@ -53,15 +53,15 @@
                         </a>
                         <div class="hidden md:block">
                             <div class="ml-10 flex items-baseline space-x-4">
-                                <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
-                                <a href="#"
-                                    class="rounded-md bg-gray-900 px-3 py-2 text-sm font-medium text-white"
+                              
+                                <a href="{{ route('site.list-products') }}"
+                                    class="rounded-md hover:bg-gray-700  px-3 py-2 text-sm font-medium text-white"
                                    >Home</a>
 
                                 <!-- Dropdown menu -->
                                 <button id="dropdownHoverButton" data-dropdown-toggle="dropdownHover"
                                     data-dropdown-trigger="hover"
-                                    class="flex items-center justify-between w-full py-2 px-3 rounded-md bg-gray-900  text-sm font-medium text-white"
+                                    class="flex items-center justify-between w-full py-2 px-3 rounded-md hover:bg-gray-700 text-sm font-medium text-white"
                                      type="button">
                                     Categorias
                                     <svg class="w-2.5 h-2.5 ms-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
@@ -80,7 +80,7 @@
                                 @foreach ($categoriasMenu as $categoriaItem)
                                     <li>
                                         <a href="{{ route('site.categoria', $categoriaItem->id) }}"
-                                            class="block px-4 py-2 hover:text-blue-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white ">
+                                            class="block px-4 py-2 hover:font-semibold hover:text-blue-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white ">
                                             {{ $categoriaItem->nome }}
                                         </a>
                                     </li>
@@ -101,14 +101,13 @@
                         <div class="ml-4 flex items-center md:ml-6">
                             <a href="{{ route('site.carrinho') }}">
                                 <button type="button"
-                                    class="gap-2 relative inline-flex items-center p-2 px-4 text-sm font-medium text-center text-white bg-gray-700 rounded-lg hover:bg-blue-900 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-                                    <span class="material-symbols-outlined">
+                                    class=" relative inline-flex items-center p-2 text-sm font-medium text-center text-white  hover:text-blue-700 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                                    <span class="material-symbols-outlined h-6 w-6">
                                         shopping_cart
                                     </span>
                                     <span class="sr-only">Carrinho de compras</span>
-                                    Carrinho
                                     <div
-                                        class="absolute inline-flex items-center justify-center w-6 h-6 text-xs font-bold text-white bg-red-500 border-2 border-white rounded-full -top-2 -end-2 dark:border-gray-900">
+                                        class="absolute inline-flex items-center justify-center  w-5 h-5 text-xs font-bold text-white bg-red-500 border-2 border-white rounded-full -top-2 -end-2 dark:border-gray-900">
                                         {{ \Cart::Content()->count() }}
                                     </div>
                                 </button>

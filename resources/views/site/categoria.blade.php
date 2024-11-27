@@ -1,5 +1,5 @@
 @extends('site/layout')
-@section('title', 'Home')
+@section('title', 'Categoria: '.$categoria->nome)
 
 @section('conteudo')
 

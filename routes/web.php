@@ -8,10 +8,13 @@ use App\Http\Controllers\ProdutoController;
 use App\Http\Controllers\SiteController;
 use App\Http\Controllers\CarrinhoController;
 
-Route::resource('produtos', ProdutoController::class);
+
 
 // listando os produtos na tela inicial do site pelo site controller
-Route::get('/', [SiteController::class, 'products'])->name('site.list-products');
+Route::get('/', [SiteController::class, 'index'])->name('site.home');
+
+// listando os produtos na tela inicial do site pelo site controller
+Route::get('/produtos', [SiteController::class, 'products'])->name('site.list-products');
 
 //exibindo o detalhes do produto pelo slug dele, vai aparecer na url
 Route::get('/produto/{slug}', [SiteController::class, 'details'])->name('site.details');
@@ -26,6 +29,7 @@ Route::prefix('carrinho')->group(function () {
     Route::post('/adicionar', [CarrinhoController::class, 'adicionarCarrinho'])->name('site.addcarrinho'); // Adiciona ao carrinho
     Route::post('/remover/{id}', [CarrinhoController::class, 'removerCarrinho'])->name('site.removercarrinho'); // Remove do carrinho
     Route::post('/atualizar/{id}', [CarrinhoController::class, 'atualizarCarrinho'])->name('site.atualizarcarrinho');// atualiza a qnt do carrinho
+    Route::get('/limpar', [CarrinhoController::class, 'limparCarrinho'])->name('site.limparcarrinho');// atualiza a qnt do carrinho
 });
 
 

@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>@yield('title')</title>
+    <title>CursoLaravel | @yield('title')</title>
 
     {{-- TaildwindCSS, e javascritp do Flowbite personalizado --}}
     @vite(['resources/css/app.css', 'resources/js/app.js'])
@@ -21,7 +21,7 @@
 
 <body class="h-full">
     <div class="min-h-full">
-        <nav class="bg-gray-800">
+        <nav class="bg-gray-800 shadow">
             <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
                 <div class="flex py-11 h-16 items-center justify-between">
                     <div class="flex items-center">
@@ -47,22 +47,29 @@
                                     </g>
                                 </g>
                             </svg>
-                            <span class="self-center text-2xl font-semibold whitespace-nowrap text-white dark:text-black">
+                            <span
+                                class="self-center text-2xl font-semibold whitespace-nowrap text-white dark:text-black">
                                 CursoLaravel
                             </span>
                         </a>
                         <div class="hidden md:block">
                             <div class="ml-10 flex items-baseline space-x-4">
-                              
+
+                                <a href="{{ route('site.home') }}"
+                                    class="rounded-md hover:bg-gray-700  px-3 py-2 text-sm font-medium text-gray-300 ">
+                                    Home
+                                </a>
+
                                 <a href="{{ route('site.list-products') }}"
-                                    class="rounded-md hover:bg-gray-700  px-3 py-2 text-sm font-medium text-white"
-                                   >Home</a>
+                                    class="rounded-md hover:bg-gray-700  px-3 py-2 text-sm font-medium text-gray-300 ">
+                                    Produtos
+                                </a>
 
                                 <!-- Dropdown menu -->
                                 <button id="dropdownHoverButton" data-dropdown-toggle="dropdownHover"
                                     data-dropdown-trigger="hover"
-                                    class="flex items-center justify-between w-full py-2 px-3 rounded-md hover:bg-gray-700 text-sm font-medium text-white"
-                                     type="button">
+                                    class="flex items-center justify-between w-full py-2 px-3 rounded-md hover:bg-gray-700 text-sm font-medium text-gray-300 "
+                                    type="button">
                                     Categorias
                                     <svg class="w-2.5 h-2.5 ms-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
                                         fill="none" viewBox="0 0 10 6">
@@ -72,22 +79,22 @@
                                 </button>
 
                                 <!-- Dropdown menu -->
-                            <div id="dropdownHover"
-                            class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700">
-                            <ul class="py-2 text-sm text-gray-700 dark:text-gray-200"
-                                aria-labelledby="dropdownHoverButton">
+                                <div id="dropdownHover"
+                                    class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700">
+                                    <ul class="py-2 text-sm text-gray-700 dark:text-gray-200"
+                                        aria-labelledby="dropdownHoverButton">
 
-                                @foreach ($categoriasMenu as $categoriaItem)
-                                    <li>
-                                        <a href="{{ route('site.categoria', $categoriaItem->id) }}"
-                                            class="block px-4 py-2 hover:font-semibold hover:text-blue-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white ">
-                                            {{ $categoriaItem->nome }}
-                                        </a>
-                                    </li>
-                                @endforeach
-                            </ul>
-                        </div>
-                      
+                                        @foreach ($categoriasMenu as $categoriaItem)
+                                            <li>
+                                                <a href="{{ route('site.categoria', $categoriaItem->id) }}"
+                                                    class="block px-4 py-2 hover:font-semibold hover:text-blue-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white ">
+                                                    {{ $categoriaItem->nome }}
+                                                </a>
+                                            </li>
+                                        @endforeach
+                                    </ul>
+                                </div>
+
 
                                 <a href="#"
                                     class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Sobre</a>
@@ -159,21 +166,21 @@
             </div>
         </nav>
 
-       
+
 
         <main>
             <div class="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
                 <!-- Your content -->
-                
+
                 @yield('conteudo')
             </div>
+            <hr class="border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-8" />
         </main>
 
 
 
-        <footer class="bg-white mt-40 dark:bg-gray-800 text-center">
-            <hr class="border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-8" />
-            <div class="flex flex-col items-center pb-6">
+        <footer class="bg-white p-4 md:p-8 dark:bg-gray-800 text-center shadow">
+            <div class="flex flex-col p-4 md:p-2 items-center pb-6">
                 <span class="text-sm text-gray-500 dark:text-gray-400">
                     © 2024 <a href="#" class="hover:underline">CursoLaravel™</a>. All Rights Reserved.
                 </span>

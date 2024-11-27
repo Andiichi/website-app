@@ -9,6 +9,13 @@ use App\Models\Categoria;
 
 class SiteController extends Controller
 {
+
+    // pagina inicial do nosso site
+    public function index()
+    {
+        return view('site/home');
+    }
+
     // pagina inicial do nosso site
     public function products()
     {

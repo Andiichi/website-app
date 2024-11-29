@@ -76,10 +76,17 @@ public function atualizarCarrinho(Request $request, $rowId)
 }
 
 
-public function TotalCarrinho()
+public function totalCarrinho()
 {
     return \Cart::total(2, ',', '.');
 }
+
+public function subtotalCarrinho()
+{
+    return \Cart::subtotal(2, ',', '.');
+}
+
+
 
 public function limparCarrinho()
 {

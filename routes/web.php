@@ -30,6 +30,9 @@ Route::prefix('carrinho')->group(function () {
     Route::post('/remover/{id}', [CarrinhoController::class, 'removerCarrinho'])->name('site.removercarrinho'); // Remove do carrinho
     Route::post('/atualizar/{id}', [CarrinhoController::class, 'atualizarCarrinho'])->name('site.atualizarcarrinho');// atualiza a qnt do carrinho
     Route::get('/totalcarrinho', [CarrinhoController::class, 'totalCarrinho'])->name('site.totalcarrinho');// total do valor do  carrinho
+    Route::get('/subtotalcarrinho', [CarrinhoController::class, 'subtotalCarrinho'])->name('site.subtotalcarrinho');// total do valor do  carrinho
+
+
 
     Route::get('/limpar', [CarrinhoController::class, 'limparCarrinho'])->name('site.limparcarrinho');// atualiza a qnt do carrinho
 });

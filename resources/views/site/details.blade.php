@@ -79,9 +79,9 @@
                             Escolha a quantidade
                         </label>
 
-                        <div class="relative flex justify-center items-center">
+                        <div class="relative flex justify-center items-center item-row">
 
-                            <button type="button" id="decrement-button-detail" data-input-counter-decrement="counter-input-detail"
+                            <button type="button" id="decrement-button" data-input-counter-decrement="counter-input"
                                 class="flex-shrink-0 bg-gray-100 dark:bg-gray-700 dark:hover:bg-gray-600 dark:border-gray-600 hover:bg-gray-200 inline-flex items-center justify-center border border-gray-300 rounded-full h-6 w-6 focus:ring-gray-100 dark:focus:ring-gray-700 focus:ring-2 focus:outline-none">
                                 <svg class="w-2.5 h-2.5 text-gray-900 dark:text-white" aria-hidden="true"
                                     xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 2">
@@ -90,11 +90,11 @@
                                 </svg>
                             </button>
 
-                            <input type="text" id="counter-input-detail" data-input-counter
+                            <input type="text" id="counter-input" 
                                 class="flex-shrink-0 text-gray-900 dark:text-white border-0 bg-transparent text-md font-bold focus:outline-none focus:ring-0 max-w-[2.8rem] text-center"
                                 placeholder="" name="qnt" value="1" required min="1"/>
 
-                            <button type="button" id="increment-button-detail" data-input-counter-increment="counter-input-detail"
+                            <button type="button" id="increment-button" data-input-counter-increment="counter-input"
                                 class="flex-shrink-0 bg-gray-100 dark:bg-gray-700 dark:hover:bg-gray-600 dark:border-gray-600 hover:bg-gray-200 inline-flex items-center justify-center border border-gray-300 rounded-full h-6 w-6 focus:ring-gray-100 dark:focus:ring-gray-700 focus:ring-2 focus:outline-none">
                                 <svg class="w-2.5 h-2.5 text-gray-900 dark:text-white" aria-hidden="true"
                                     xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 18 18">

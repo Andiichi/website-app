@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ProdutoController;
 use App\Http\Controllers\SiteController;
 use App\Http\Controllers\CarrinhoController;
+use App\Http\Controllers\LoginController;
 
 
 
@@ -31,11 +32,11 @@ Route::prefix('carrinho')->group(function () {
     Route::post('/atualizar/{id}', [CarrinhoController::class, 'atualizarCarrinho'])->name('site.atualizarcarrinho');// atualiza a qnt do carrinho
     Route::get('/totalcarrinho', [CarrinhoController::class, 'totalCarrinho'])->name('site.totalcarrinho');// total do valor do  carrinho
     Route::get('/subtotalcarrinho', [CarrinhoController::class, 'subtotalCarrinho'])->name('site.subtotalcarrinho');// total do valor do  carrinho
-
-
-
-    Route::get('/limpar', [CarrinhoController::class, 'limparCarrinho'])->name('site.limparcarrinho');// atualiza a qnt do carrinho
+   Route::get('/limpar', [CarrinhoController::class, 'limparCarrinho'])->name('site.limparcarrinho');// atualiza a qnt do carrinho
 });
+
+Route::view('/login', 'login.form-login')->name('login.form-login');
+Route::post('/auth', [LoginController::class, 'auth'])->name('login.auth');
 
 
 

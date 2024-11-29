@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt-br" class="h-full bg-gray-100">
+<html lang="pt-br" class="bg-gray-100">
 
 <head>
     <meta charset="UTF-8">
@@ -174,14 +174,14 @@
 
                 @yield('conteudo')
             </div>
-            <hr class="border-gray-200 sm:mx-auto dark:border-gray-700 lg:my-8" />
         </main>
-
-
-
-        <footer class="bg-white p-4 md:p-8 dark:bg-gray-800 text-center shadow">
+        
+        
+        
+        <hr class="border-gray-300  shadow sm:mx-auto " />
+        <footer class=" p-4 md:p-8 bg-gray-800 dark:bg-gray-800 text-center">
             <div class="flex flex-col p-4 md:p-2 items-center pb-6">
-                <span class="text-sm text-gray-500 dark:text-gray-400">
+                <span class="text-sm text-gray-300 dark:text-gray-400">
                     © 2024 <a href="#" class="hover:underline">CursoLaravel™</a>. All Rights Reserved.
                 </span>
             </div>

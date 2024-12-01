@@ -8,37 +8,62 @@ use App\Http\Controllers\ProdutoController;
 use App\Http\Controllers\SiteController;
 use App\Http\Controllers\CarrinhoController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\DashboardController;
 
 
+// tela inicial do site
+Route::view('/', 'site.public.home')->name('home');
 
-// listando os produtos na tela inicial do site pelo site controller
-Route::get('/', [SiteController::class, 'index'])->name('site.home');
+//rota de tela login
+Route::view('/login', 'login.form')->name('login');
 
-// listando os produtos na tela inicial do site pelo site controller
-Route::get('/produtos', [SiteController::class, 'products'])->name('site.list-products');
+//rota de tela login
+Route::view('/registro', 'login.create')->name('registro');
 
-//exibindo o detalhes do produto pelo slug dele, vai aparecer na url
-Route::get('/produto/{slug}', [SiteController::class, 'details'])->name('site.details');
+//rota de tela sobre
+Route::view('/sobre', 'site.public.sobre')->name('sobre');
 
-//exibindo produtos da categoria especifica, pelo id da categoria
-Route::get('/categoria/{id}', [SiteController::class, 'categoria'])->name('site.categoria');
+//rota de tela preço
+Route::view('/preco', 'site.public.preco')->name('preco');
+
+//rota de tela contato
+Route::view('/contato', 'site.public.contato')->name('contato');
 
 
-//exibindo o carrinho de compras 
-Route::prefix('carrinho')->group(function () {
-    Route::get('/', [CarrinhoController::class, 'carrinhoLista'])->name('site.carrinho'); // Exibe o carrinho
-    Route::post('/adicionar', [CarrinhoController::class, 'adicionarCarrinho'])->name('site.addcarrinho'); // Adiciona ao carrinho
-    Route::post('/remover/{id}', [CarrinhoController::class, 'removerCarrinho'])->name('site.removercarrinho'); // Remove do carrinho
-    Route::post('/atualizar/{id}', [CarrinhoController::class, 'atualizarCarrinho'])->name('site.atualizarcarrinho');// atualiza a qnt do carrinho
-    Route::get('/totalcarrinho', [CarrinhoController::class, 'totalCarrinho'])->name('site.totalcarrinho');// total do valor do  carrinho
-    Route::get('/subtotalcarrinho', [CarrinhoController::class, 'subtotalCarrinho'])->name('site.subtotalcarrinho');// total do valor do  carrinho
-   Route::get('/limpar', [CarrinhoController::class, 'limparCarrinho'])->name('site.limparcarrinho');// atualiza a qnt do carrinho
+Route::middleware(['auth'])->group(function () {
+
+    // listando os produtos na tela inicial do site pelo site controller
+    Route::get('/produtos', [SiteController::class, 'products'])->name('site.list-products');
+    
+    //exibindo o detalhes do produto pelo slug dele, vai aparecer na url
+    Route::get('/produto/{slug}', [SiteController::class, 'details'])->name('site.details');
+    
+    //exibindo produtos da categoria especifica, pelo id da categoria
+    Route::get('/categoria/{id}', [SiteController::class, 'categoria'])->name('site.categoria');
+    
+    
+    Route::get('/logout', [LoginController::class, 'logout'])->name('login.logout');
+
+    route::post('/auth', [LoginController::class, 'auth'])->name('login.auth');
+    
+    //painel dashboard
+    Route::get('/admin/dashboard', [DashboardController::class, 'index'])->name('admin.dashboard');
+
+    //exibindo o carrinho de compras 
+    Route::prefix('carrinho')->group(function () {
+        Route::get('/', [CarrinhoController::class, 'carrinhoLista'])->name('site.carrinho'); // Exibe o carrinho
+        Route::post('/adicionar', [CarrinhoController::class, 'adicionarCarrinho'])->name('site.addcarrinho'); // Adiciona ao carrinho
+        Route::post('/remover/{id}', [CarrinhoController::class, 'removerCarrinho'])->name('site.removercarrinho'); // Remove do carrinho
+        Route::post('/atualizar/{id}', [CarrinhoController::class, 'atualizarCarrinho'])->name('site.atualizarcarrinho');// atualiza a qnt do carrinho
+        Route::get('/totalcarrinho', [CarrinhoController::class, 'totalCarrinho'])->name('site.totalcarrinho');// total do valor do  carrinho
+        Route::get('/subtotalcarrinho', [CarrinhoController::class, 'subtotalCarrinho'])->name('site.subtotalcarrinho');// total do valor do  carrinho
+       Route::get('/limpar', [CarrinhoController::class, 'limparCarrinho'])->name('site.limparcarrinho');// atualiza a qnt do carrinho
+    });
+
+ 
 });
-
-Route::view('/login', 'login.form-login')->name('login.form-login');
-Route::post('/auth', [LoginController::class, 'auth'])->name('login.auth');
-
-
+    
+    
 
 
 //fazendo que a rota / seja redirecionada a rota agrupada do admin

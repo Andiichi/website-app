@@ -54,74 +54,44 @@
 
                 <div class="flex items-center md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
 
-                   {{-- menu perfil caso o usuario esteja autenticado --}}
-                   @auth
-                  <div class="mr-4 flex items-center md:ml-6">
-                    <a href="{{ route('site.carrinho') }}">
-                        <button type="button"
-                            class=" relative inline-flex items-center p-2 text-sm font-medium text-center 
+                    {{-- menu perfil caso o usuario esteja autenticado --}}
+                    @auth
+                        <div class="mr-4 flex items-center md:ml-6">
+                            <a href="{{ route('site.carrinho') }}">
+                                <button type="button"
+                                    class=" relative inline-flex items-center p-2 text-sm font-medium text-center 
                             hover:rounded-full text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">
-                            <span class="material-symbols-outlined h-6 w-6">
-                                shopping_cart
-                            </span>
-                            <span class="sr-only">Carrinho de compras</span>
-                            <div
-                                class="absolute inline-flex items-center justify-center  w-5 h-5 text-xs font-bold text-white bg-red-500 border-2 border-white rounded-full -top-2 -end-2 dark:border-gray-900">
-                                {{ \Cart::Content()->count() }}
-                            </div>
-                        </button>
-                    </a>
-  
-                </div>
+                                    <span class="material-symbols-outlined h-6 w-6">
+                                        shopping_cart
+                                    </span>
+                                    <span class="sr-only">Carrinho de compras</span>
+                                    <div
+                                        class="absolute inline-flex items-center justify-center  w-5 h-5 text-xs font-bold text-white bg-red-500 border-2 border-white rounded-full -top-2 -end-2 dark:border-gray-900">
+                                        {{ \Cart::Content()->count() }}
+                                    </div>
+                                </button>
+                            </a>
 
-
-                     
-
-                    <!-- Dropdown menu user -->
-                    <div>
-                        <button type="button"
-                            class="flex text-sm bg-gray-800 rounded-full md:me-0 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600"
-                            id="user-menu-button" aria-expanded="false" data-dropdown-toggle="user-dropdown"
-                            data-dropdown-placement="bottom">
-                            <span class="sr-only">Open user menu</span>
-                            <img class="w-8 h-8 rounded-full"
-                                src="https://flowbite-admin-dashboard.vercel.app/images/users/bonnie-green-2x.png"
-                                alt="user photo">
-                        </button>
-
-                        <div class="z-50 hidden my-4 text-base list-none bg-white divide-y divide-gray-100 rounded-lg shadow dark:bg-gray-700 dark:divide-gray-600"
-                            id="user-dropdown">
-                            <div class="px-4 py-3">
-                                <span class="block text-sm text-gray-900 dark:text-white">
-                                    {{ auth()->user()->firstname }} {{ auth()->user()->lastname }} </span>
-                                <span
-                                    class="block text-sm  text-gray-500 truncate dark:text-gray-400">
-                                    {{ auth()->user()->email }}
-                                  </span>
-                            </div>
-                            <ul class="py-2" aria-labelledby="user-menu-button">
-                                <li>
-                                    <a href="{{ route('admin.dashboard') }}"
-                                        class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Dashboard</a>
-                                </li>
-                                <li>
-                                    <a href="#"
-                                        class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Settings</a>
-                                </li>
-                                <li>
-                                    <a href="#"
-                                        class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Earnings</a>
-                                </li>
-                                <li>
-                                    <a href="{{ route('login.logout') }}"
-                                        class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">
-                                        Logout
-                                      </a>
-                                </li>
-                            </ul>
                         </div>
 
-                    </div>
+
+
+
+                        <!-- Dropdown menu user -->
+                        <div>
+                            <button type="button"
+                                class="flex text-sm bg-gray-800 rounded-full md:me-0 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600"
+                                type="button" data-drawer-target="drawer-backdrop" data-drawer-show="drawer-backdrop"
+                                data-drawer-backdrop="true" aria-controls="drawer-backdrop">
+                                <span class="sr-only">Open user menu</span>
+                                <img class="w-8 h-8 rounded-full"
+                                    src="https://flowbite-admin-dashboard.vercel.app/images/users/bonnie-green-2x.png"
+                                    alt="user photo">
+                            </button>
+
+                            <x-site.drawer_user />
+                            
+                        </div>
 
 
                     @endauth
@@ -154,53 +124,53 @@
                         </li>
 
                         @auth
-                            
-                        <li>
-                            <a href="{{ route('site.list-products') }}"
-                                class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100  md:hover:bg-transparent md:hover:bg-gray-200 md:p-2 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700 {{ Request::routeIs('site.list-products') ? 'md:active bg-gray-200 ' : '' }}">
-                                Produtos
-                            </a>
-                        </li>
-                        <li>
-                            <!-- Dropdown menu -->
-                            <button id="dropdownHoverButton" data-dropdown-toggle="dropdownHover"
-                                data-dropdown-trigger="hover"
-                                class="flex items-center justify-between py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:active:bg-gray-200 md:hover:bg-gray-200 md:p-2 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
-                                type="button">
-                                Categorias
-                                <svg class="w-2.5 h-2.5 ms-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
-                                    fill="none" viewBox="0 0 10 6">
-                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                        stroke-width="2" d="m1 1 4 4 4-4" />
-                                </svg>
-                            </button>
 
-                            <!-- Dropdown menu -->
-                            <div id="dropdownHover"
-                                class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700">
-                                <ul class="py-2 text-sm text-gray-700 dark:text-gray-200"
-                                    aria-labelledby="dropdownHoverButton">
+                            <li>
+                                <a href="{{ route('site.list-products') }}"
+                                    class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100  md:hover:bg-transparent md:hover:bg-gray-200 md:p-2 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700 {{ Request::routeIs('site.list-products') ? 'md:active bg-gray-200 ' : '' }}">
+                                    Produtos
+                                </a>
+                            </li>
+                            <li>
+                                <!-- Dropdown menu -->
+                                <button id="dropdownHoverButton" data-dropdown-toggle="dropdownHover"
+                                    data-dropdown-trigger="hover"
+                                    class="flex items-center justify-between py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:active:bg-gray-200 md:hover:bg-gray-200 md:p-2 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"
+                                    type="button">
+                                    Categorias
+                                    <svg class="w-2.5 h-2.5 ms-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                                        fill="none" viewBox="0 0 10 6">
+                                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                            stroke-width="2" d="m1 1 4 4 4-4" />
+                                    </svg>
+                                </button>
 
-                                    @foreach ($categoriasMenu as $categoriaItem)
-                                        <li>
-                                            <a href="{{ route('site.categoria', $categoriaItem->id) }}"
-                                                class="block px-4 py-2 hover:font-semibold hover:text-blue-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
-                                                {{ $categoriaItem->nome }}
-                                            </a>
-                                        </li>
-                                    @endforeach
-                                </ul>
-                            </div>
-                        </li>
-                        
+                                <!-- Dropdown menu -->
+                                <div id="dropdownHover"
+                                    class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700">
+                                    <ul class="py-2 text-sm text-gray-700 dark:text-gray-200"
+                                        aria-labelledby="dropdownHoverButton">
+
+                                        @foreach ($categoriasMenu as $categoriaItem)
+                                            <li>
+                                                <a href="{{ route('site.categoria', $categoriaItem->id) }}"
+                                                    class="block px-4 py-2 hover:font-semibold hover:text-blue-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
+                                                    {{ $categoriaItem->nome }}
+                                                </a>
+                                            </li>
+                                        @endforeach
+                                    </ul>
+                                </div>
+                            </li>
+
                         @endauth
 
                         <li>
-                          <a href="{{ route('preco') }}"
-                              class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:bg-gray-200 md:p-2 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700 {{ Request::routeIs('preco') ? 'md:active bg-gray-200 ' : '' }}">
-                              Preços
-                          </a>
-                      </li>
+                            <a href="{{ route('preco') }}"
+                                class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:bg-gray-200 md:p-2 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700 {{ Request::routeIs('preco') ? 'md:active bg-gray-200 ' : '' }}">
+                                Preços
+                            </a>
+                        </li>
 
                         <li>
                             <a href="{{ route('sobre') }}"
@@ -233,7 +203,7 @@
 
 
         <hr class="border-gray-300  shadow sm:mx-auto " />
-        <footer class=" p-4 md:p-8 bg-gray-800 dark:bg-gray-800 text-center">
+        <footer class=" md:p-4 bg-gray-800 dark:bg-gray-800 text-center">
             <div class="flex flex-col p-4 md:p-2 items-center pb-6">
                 <span class="text-sm text-gray-300 dark:text-gray-400">
                     © 2024 <a href="#" class="hover:underline">CursoLaravel™</a>. All Rights Reserved.

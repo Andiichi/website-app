@@ -18,48 +18,50 @@
           <h4 class="text-gray-800 text-base font-semibold mt-6">Preencha as informações abaixo para criar um cadastro.</h4>
         </div>
   
-        <form>
+        <form action="{{ route('users.store') }}" method="POST">
+          @csrf
+
           <div class="grid sm:grid-cols-2 gap-8 mt-8">
             <div>
-              <label class="text-gray-800 text-sm mb-2 block">First Name</label>
-              <input name="name" type="text" class="bg-white w-full text-gray-800 text-sm px-4 py-3.5 rounded-md focus:bg-transparent outline-blue-500 transition-all" placeholder="Enter name" />
+              <label class="text-gray-800 text-sm mb-2 block">Nome</label>
+              <input name="firstname" type="text" class="bg-white w-full text-gray-800 text-sm px-4 py-3.5 rounded-md focus:bg-transparent outline-blue-500 transition-all" placeholder="Digite seu nome..." />
             </div>
             <div>
-              <label class="text-gray-800 text-sm mb-2 block">Last Name</label>
-              <input name="lname" type="text" class="bg-white w-full text-gray-800 text-sm px-4 py-3.5 rounded-md focus:bg-transparent outline-blue-500 transition-all" placeholder="Enter last name" />
+              <label class="text-gray-800 text-sm mb-2 block">Sobrenome</label>
+              <input name="lastname" type="text" class="bg-white w-full text-gray-800 text-sm px-4 py-3.5 rounded-md focus:bg-transparent outline-blue-500 transition-all" placeholder="Digite seu sobrenome..." />
             </div>
         </div>
+        <div class="grid sm:grid-cols-2 gap-8 mt-8">
             <div>
-              <label class="text-gray-800 text-sm mt-8 block">Email Id</label>
-              <input name="email" type="text" class="bg-white w-full text-gray-800 text-sm px-4 py-3.5 rounded-md focus:bg-transparent outline-blue-500 transition-all" placeholder="Enter email" />
+              <label class="text-gray-800 text-sm mb-2 block">Email</label>
+              <input name="email" type="text" class="bg-white w-full text-gray-800 text-sm px-4 py-3.5 rounded-md focus:bg-transparent outline-blue-500 transition-all" placeholder="Digite seu email..." />
             </div>
          
-            <div class="grid sm:grid-cols-2 gap-8 mt-8">
             <div>
-              <label class="text-gray-800 text-sm mb-2 block">Password</label>
-              <input name="password" type="password" class="bg-white w-full text-gray-800 text-sm px-4 py-3.5 rounded-md focus:bg-transparent outline-blue-500 transition-all" placeholder="Enter password" />
+              <label class="text-gray-800 text-sm mb-2 block">Senha</label>
+              <input name="password" type="password" class="bg-white w-full text-gray-800 text-sm px-4 py-3.5 rounded-md focus:bg-transparent outline-blue-500 transition-all" placeholder="Digite sua senha..." />
             </div>
-            <div>
-              <label class="text-gray-800 text-sm mb-2 block">Confirm Password</label>
-              <input name="cpassword" type="password" class="bg-white w-full text-gray-800 text-sm px-4 py-3.5 rounded-md focus:bg-transparent outline-blue-500 transition-all" placeholder="Enter confirm password" />
-            </div>
+            {{-- <div>
+              <label class="text-gray-800 text-sm mb-2 block">Confirme seu senha</label>
+              <input name="cpassword" type="password" class="bg-white w-full text-gray-800 text-sm px-4 py-3.5 rounded-md focus:bg-transparent outline-blue-500 transition-all" placeholder="Confirme sua senha..." />
+            </div> --}}
         </div>
   
           <div class="mt-4">
 
-            <div class="flex m-4 items-start">
+            <div class="flex my-4 items-start">
                 <div class="flex items-center h-5">
                   <input id="terms" type="checkbox" value="" class="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-blue-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800" required />
                 </div>
-                <label for="terms" class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">I agree with the <a href="#" class="text-blue-600 hover:underline dark:text-blue-500">terms and conditions</a></label>
+                <label for="terms" class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Eu aceito os <a href="#" class="text-blue-600 hover:underline dark:text-blue-500">termos e condições</a> do site.</label>
               </div>
 
-            <button type="button" class=" justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm/6 font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 tracking-wider focus-visible:outline-indigo-600">Cadastrar</button>
+            <button type="submit" class=" justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm/6 font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 tracking-wider focus-visible:outline-indigo-600">Cadastrar</button>
           </div>
         </form>
       </div>
 
-    <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
+    {{-- <div class="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
           <h1 class="text-gray-800 text-3xl font-extrabold">Faça seu cadastro!</h1>
           <form class="space-y-6" action="" method="POST">
             @csrf
@@ -100,7 +102,7 @@
           </p>
         </div>
         
-      </div>
+      </div> --}}
 
 
 @endsection

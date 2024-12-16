@@ -11,19 +11,19 @@
 
             @if (Auth::check())
 
-            <h3 class="text-gray-800 md:text-4xl text-2xl md:leading-10">
+            <h3 class="text-gray-800 lg:text-6xl  text-2xl md:leading-10">
                 < Bem-vindo(a), <strong>{{ auth()->user()->firstname }}</strong>! />
             </h3>
             <p class="mt-4 text-sm text-gray-600">
                 Agora você tem acesso aos conteúdos exclusivos do 'CursoLaravel'! Clique em produtos e se aventure! 
             </p>
 
-            <a href="{{ route('login.logout') }}"><button type="button"
+            <a href="{{ route('logout') }}"><button type="button"
                 class="px-5 py-2.5 mt-8 rounded text-sm outline-none tracking-wide bg-blue-600 text-white hover:bg-blue-700">Logout</button></a>
 
             @else
                 
-            <h3 class="text-gray-800 md:text-6xl text-2xl md:leading-10">
+            <h3 class="text-gray-800 lg:text-6xl text-2xl md:leading-10">
                 < Bem-vindo! />
             </h3>
             <p class="mt-4 text-sm text-gray-600">
@@ -31,13 +31,16 @@
             </p>
                 <a href="{{ route('login') }}"><button type="button"
                         class="px-5 py-2.5 mt-8 rounded text-sm outline-none tracking-wide bg-blue-600 text-white hover:bg-blue-700">Login</button></a>
-                <button type="button"
-                    class="px-5 py-2.5 mt-8 rounded text-sm outline-none tracking-wide bg-gray-600 text-white hover:bg-gray-700">Criar
-                    uma conta</button>
+
+                <a href="{{ route('login.create') }}">
+                    <button type="button"
+                        class="px-5 py-2.5 mt-8 rounded text-sm outline-none tracking-wide bg-gray-600 text-white hover:bg-gray-700">Criar
+                        uma conta</button>
+                </a>
             @endif
 
         </div>
-        <div class="md:h-[470px]">
+        <div class="md:h-90 lg:h-[394px]">
             <img src="img/photo.jpg" class="w-full h-full md:object-contain" />
         </div>
     </div>

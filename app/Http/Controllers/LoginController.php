@@ -9,30 +9,30 @@ use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
 {
-    public function auth(Request $request){
+    public function auth(Request $request)
+{
+    // dd('Método chamado');
+    $credenciais = $request->validate([
+        'email' => ['required', 'email'],
+        'password' => ['required']
+    ]);
 
-        $credenciais = $request->validate([
-            'email' => ['required', 'email'],
-            'password' => ['required']
-        ]);
-
-        if (Auth::attempt($credenciais)) {
-            $request->session()->regenerate();
-            //intended é para voltar ao dashboard apos o login, pois é a rota que ele pretendia acessar
-            return redirect()->intended(route('admin.dashboard'));
-
-        } 
-        
-        // Redireciona com a mensagem de sucesso
-       return redirect()
-       ->back()
-       ->with('type', 'danger')
-       ->with('message', "<strong>Email ou senha inválidos!</strong> Por favor, verificar!");
-        
-
-
+    if (Auth::attempt($credenciais, $request->remember)) {
+        $request->session()->regenerate();
+        return redirect() // Redireciona com a mensagem de sucesso
+        ->intended(route('admin.dashboard'))
+        ->with('type', 'success')
+        ->with('message', "<strong>Olá!</strong> Login feito com sucesso!");
+       
+    
+    } else {
+        return redirect()
+            ->back()
+            ->with('type', 'danger')
+            ->with('message', "<strong>Email ou senha inválidos!</strong> Por favor, verificar!");
     }
 
+}
 
     public function logout(Request $request): RedirectResponse
 {
@@ -48,5 +48,11 @@ class LoginController extends Controller
     ->with('type', 'success')
     ->with('message', "<strong>Até breve!</strong> logout feito com sucesso!");
 }
+
+public function create()
+{
+    return view('login.create');
+}
+
 
 }

@@ -9,16 +9,13 @@ use App\Http\Controllers\SiteController;
 use App\Http\Controllers\CarrinhoController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\UserController;
 
+Route::resource('produtos', ProdutoController::class);
+Route::resource('users', UserController::class);
 
 // tela inicial do site
 Route::view('/', 'site.public.home')->name('home');
-
-//rota de tela login
-Route::view('/login', 'login.form')->name('login');
-
-//rota de tela login
-Route::view('/registro', 'login.create')->name('registro');
 
 //rota de tela sobre
 Route::view('/sobre', 'site.public.sobre')->name('sobre');
@@ -28,6 +25,17 @@ Route::view('/preco', 'site.public.preco')->name('preco');
 
 //rota de tela contato
 Route::view('/contato', 'site.public.contato')->name('contato');
+
+Route::middleware(['guest'])->group(function () {
+    //rota de tela login
+    Route::view('/login', 'login.form_login')->name('login');
+
+    //AUTENTICAÇÃO CASO NAO ESTEJA LOGADO
+    Route::post('/auth', [LoginController::class, 'auth'])->name('login.auth');
+
+    //rota de tela criar cadastro
+    route::get('/register', [LoginController::class, 'create'])->name('login.create');
+});
 
 
 Route::middleware(['auth'])->group(function () {
@@ -41,11 +49,9 @@ Route::middleware(['auth'])->group(function () {
     //exibindo produtos da categoria especifica, pelo id da categoria
     Route::get('/categoria/{id}', [SiteController::class, 'categoria'])->name('site.categoria');
     
-    
-    Route::get('/logout', [LoginController::class, 'logout'])->name('login.logout');
+    #rota deslogar ususario
+    Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 
-    route::post('/auth', [LoginController::class, 'auth'])->name('login.auth');
-    
     //painel dashboard
     Route::get('/admin/dashboard', [DashboardController::class, 'index'])->name('admin.dashboard');
 
